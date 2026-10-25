@@ -1,0 +1,9 @@
+recipe: default.v1
+assistant_id: rasa_nlu_benchmark
+language: en
+
+pipeline:
+# Pipeline configurations will be compared on Day 3
+
+policies:
+# Core dialogue policies (not needed for pure NLU benchmarking)
