@@ -1,0 +1,56 @@
+version: "3.1"
+
+intents:
+  - check_balance
+  - transfer_money
+  - pay_bill
+  - view_transactions
+  - freeze_card
+  - report_fraud
+  - apply_loan
+  - update_contact_info
+  - find_atm
+  - dispute_transaction
+
+entities:
+  - account_type
+  - amount
+  - currency
+  - recipient
+  - card_number
+  - transaction_date
+
+responses:
+  utter_check_balance:
+    - text: "Your current balance is being retrieved."
+
+  utter_transfer_money:
+    - text: "Processing your transfer request."
+
+  utter_pay_bill:
+    - text: "Initiating bill payment."
+
+  utter_view_transactions:
+    - text: "Fetching your recent transactions."
+
+  utter_freeze_card:
+    - text: "Your card has been temporarily locked for security."
+
+  utter_report_fraud:
+    - text: "Your fraud alert has been flagged. A specialist will review it."
+
+  utter_apply_loan:
+    - text: "Starting your loan application."
+
+  utter_update_contact_info:
+    - text: "Let's update your contact details."
+
+  utter_find_atm:
+    - text: "Locating the nearest ATM or branch."
+
+  utter_dispute_transaction:
+    - text: "Opening a formal dispute for this transaction."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
