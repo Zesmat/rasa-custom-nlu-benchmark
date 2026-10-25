@@ -1,0 +1,254 @@
+version: "3.1"
+
+nlu:
+  # ==========================================
+  # 1. INTENT: check_balance
+  # ==========================================
+  - intent: check_balance
+    examples: |
+      - what is my current balance?
+      - how much money do I have in my [checking](account_type) account?
+      - check balance for [savings](account_type)
+      - what's left in my [credit card](account_type) balance?
+      - how much funds do I have available?
+      - can you show my [investment](account_type) account balance?
+      - how much cash is in my [everyday account](account_type:checking)?
+      - tell me my [wallet](account_type) balance
+      - balance inquiry for account ending in [4589](card_number)
+      - do I have enough money in [savings](account_type)?
+      - show total balance
+      - balance check please
+      - what is the balance of my [salary](account_type:checking) account?
+      - view balance for [checking](account_type)
+      - balance on card [1234](card_number)
+
+  # ==========================================
+  # 2. INTENT: transfer_money
+  # ==========================================
+  - intent: transfer_money
+    examples: |
+      - send [100](amount) [USD](currency) to [Alex](recipient)
+      - transfer [50](amount) [euros](currency) to [Sarah](recipient) right now
+      - wire [500](amount) [dollars](currency) from [checking](account_type) to [savings](account_type)
+      - move [200](amount) [GBP](currency) to [John Doe](recipient)
+      - please send [25.50](amount) [dollars](currency) to [Mom](recipient)
+      - transfer [1000](amount) [EUR](currency) to account [5544](card_number)
+      - make a transfer of [75](amount) [bucks](currency:USD) to [David](recipient)
+      - send money to [Alice](recipient)
+      - I want to wire [300](amount) [USD](currency)
+      - move money between my accounts
+      - transfer [150](amount) [dollars](currency) to [Michael](recipient) on [tomorrow](transaction_date)
+      - pay [80](amount) [EUR](currency) to [Bob](recipient)
+      - quick transfer of [40](amount) [USD](currency) to [Emma](recipient)
+      - can you send [60](amount) [dollars](currency) to [Dad](recipient)?
+      - transfer [250](amount) from my [savings](account_type) to [checking](account_type)
+
+  # ==========================================
+  # 3. INTENT: pay_bill
+  # ==========================================
+  - intent: pay_bill
+    examples: |
+      - pay my electricity bill of [120](amount) [USD](currency)
+      - I need to pay the internet invoice
+      - pay bill for [water](recipient)
+      - settle my [credit card](account_type) bill of [450](amount) [dollars](currency)
+      - pay [75](amount) [EUR](currency) to [Netflix](recipient)
+      - schedule a utility bill payment for [tomorrow](transaction_date)
+      - please pay my phone bill
+      - pay [60](amount) [USD](currency) to [Electric Co](recipient)
+      - settle pending bill for [Gym](recipient)
+      - process bill payment of [200](amount) [dollars](currency)
+      - pay invoice due on [Friday](transaction_date)
+      - pay my health insurance premium of [300](amount) [USD](currency)
+      - pay gas company [85](amount) [dollars](currency)
+      - clear my outstanding bills
+      - make a bill payment of [110](amount) [EUR](currency) to [Council Tax](recipient)
+
+  # ==========================================
+  # 4. INTENT: view_transactions
+  # ==========================================
+  - intent: view_transactions
+    examples: |
+      - show my recent transactions
+      - what did I spend [yesterday](transaction_date)?
+      - show statement for my [checking](account_type) account
+      - view transaction history for [last week](transaction_date)
+      - list all purchases made on [Monday](transaction_date)
+      - show payments to [Amazon](recipient)
+      - what was my last transaction?
+      - get bank statement for [March](transaction_date)
+      - show expenses for [savings](account_type) account
+      - any charges from [Uber](recipient) recently?
+      - display spending summary
+      - list recent debits and credits
+      - show transactions above [100](amount) [USD](currency)
+      - what are the recent charges on card [9876](card_number)?
+      - see account activity for [last month](transaction_date)
+
+  # ==========================================
+  # 5. INTENT: freeze_card
+  # ==========================================
+  - intent: freeze_card
+    examples: |
+      - freeze my card immediately
+      - block my [credit card](account_type)
+      - lock card ending in [4321](card_number)
+      - please temporarily freeze my [debit card](account_type)
+      - stop all activity on card [8888](card_number)
+      - emergency card freeze
+      - my card is compromised, lock it now
+      - temporarily disable card ending in [1122](card_number)
+      - lock my [checking](account_type) debit card
+      - put a hold on my card
+      - block card [6543](card_number)
+      - deactivate my lost card
+      - freeze all outgoing card payments
+      - please lock card [9900](card_number)
+      - disable my payment card
+
+  # ==========================================
+  # 6. INTENT: report_fraud
+  # ==========================================
+  - intent: report_fraud
+    examples: |
+      - I see an unauthorized charge on my account
+      - someone stole my card details
+      - report suspicious activity of [500](amount) [USD](currency)
+      - there is a fraudulent transaction on my card [3344](card_number)
+      - I didn't authorize a payment to [Unknown Merchant](recipient)
+      - report card fraud immediately
+      - unauthorized debit of [250](amount) [EUR](currency) on [yesterday](transaction_date)
+      - someone is using my account without permission
+      - suspicious purchase of [1200](amount) [dollars](currency)
+      - report stolen identity and bank fraud
+      - I think my account was hacked
+      - unapproved charge on my [credit card](account_type)
+      - alert fraud department about charge from [Scam Store](recipient)
+      - scam payment of [95](amount) [USD](currency) detected
+      - report security incident on account
+
+  # ==========================================
+  # 7. INTENT: apply_loan
+  # ==========================================
+  - intent: apply_loan
+    examples: |
+      - I want to apply for a personal loan of [5000](amount) [USD](currency)
+      - how do I get a home mortgage?
+      - apply for an auto loan of [15000](amount) [dollars](currency)
+      - what are the interest rates for a personal loan?
+      - request a student loan of [8000](amount) [EUR](currency)
+      - can I borrow [2000](amount) [USD](currency)?
+      - submit loan application
+      - I need a small business loan of [20000](amount) [dollars](currency)
+      - check loan eligibility for [10000](amount) [USD](currency)
+      - apply for credit line increase
+      - loan inquiry for [3000](amount) [EUR](currency)
+      - how much can I borrow for a car?
+      - start application for debt consolidation loan
+      - borrow [1000](amount) [USD](currency) for emergency
+      - apply for personal credit of [4000](amount) [dollars](currency)
+
+  # ==========================================
+  # 8. INTENT: update_contact_info
+  # ==========================================
+  - intent: update_contact_info
+    examples: |
+      - I moved and need to update my mailing address
+      - change my phone number
+      - update email address on file
+      - change my registered mobile number
+      - update residential address for my [checking](account_type) account
+      - my new email is updated, please sync it
+      - change address details
+      - modify profile contact information
+      - update my contact phone number to a new one
+      - revise billing address for card [7788](card_number)
+      - edit my personal information
+      - update phone and email details
+      - new address registration
+      - change notification email
+      - update emergency contact number
+
+  # ==========================================
+  # 9. INTENT: find_atm
+  # ==========================================
+  - intent: find_atm
+    examples: |
+      - where is the nearest ATM?
+      - find cash machine near me
+      - locate bank branch close to my location
+      - is there an ATM within walking distance?
+      - where can I withdraw cash without fees?
+      - find nearest deposit ATM
+      - directions to closest branch
+      - cash withdrawal machine nearby
+      - show bank locations in downtown
+      - nearest ATM for cash withdrawal
+      - find cash point near here
+      - locate drive-through ATM
+      - where can I deposit cash nearby?
+      - closest branch with teller service
+      - find partner ATM network nearby
+
+  # ==========================================
+  # 10. INTENT: dispute_transaction
+  # ==========================================
+  - intent: dispute_transaction
+    examples: |
+      - I want to dispute a charge of [45](amount) [USD](currency)
+      - dispute transaction from [Retailer](recipient) on [yesterday](transaction_date)
+      - I was charged twice for the same purchase of [30](amount) [dollars](currency)
+      - dispute incorrect amount charged by [Hotel](recipient)
+      - contest a fee on my [credit card](account_type)
+      - cancel disputed transaction of [99](amount) [EUR](currency)
+      - open a dispute for transaction on [Monday](transaction_date)
+      - refund request for wrongful debit of [65](amount) [USD](currency)
+      - dispute merchant billing error
+      - I never received items from [Merchant](recipient) for [150](amount) [dollars](currency)
+      - dispute unauthorized fee of [15](amount) [USD](currency)
+      - contest charge of [80](amount) [EUR](currency) on card [5522](card_number)
+      - lodge a formal transaction dispute
+      - dispute charge from [Airline](recipient)
+      - challenge payment processed on [Friday](transaction_date)
+
+  # ==========================================
+  # SYNONYMS (Entity Value Normalization)
+  # ==========================================
+  - synonym: checking
+    examples: |
+      - current
+      - everyday account
+      - salary account
+      - checking account
+
+  - synonym: savings
+    examples: |
+      - save
+      - rainy day fund
+      - savings account
+      - deposit account
+
+  - synonym: USD
+    examples: |
+      - dollars
+      - bucks
+      - US dollars
+      - $
+
+  - synonym: EUR
+    examples: |
+      - euros
+      - euro
+      - €
+
+  # ==========================================
+  # REGEX PATTERNS (Feature Extraction)
+  # ==========================================
+  - regex: card_number
+    examples: |
+      - \b\d{4}\b
+      - \b(?:\d{4}[ -]?){3}\d{4}\b
+
+  - regex: amount
+    examples: |
+      - \b\d+(?:\.\d{1,2})?\b
