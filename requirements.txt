@@ -1,0 +1,10 @@
+# Core Rasa Framework
+rasa==3.6.21
+
+# spaCy & Linguistic Models
+spacy==3.8.11
+https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl
+
+# Hugging Face Transformers (pinned to match Rasa 3.6 TensorFlow requirements)
+transformers>=4.36.2,<4.37.0
+sentencepiece>=0.1.99,<0.3.0

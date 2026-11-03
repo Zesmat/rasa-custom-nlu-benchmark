@@ -1,0 +1,66 @@
+# ==============================================================================
+# Pipeline 2: Pre-trained Transformer & spaCy Hybrid Pipeline
+# Architecture: spaCy Language Model + Hugging Face DistilBERT + DIET
+# Best suited for: Semantic richness, transfer learning, contextual understanding
+# ==============================================================================
+
+recipe: default.v1
+assistant_id: benchmark_transformer_spacy
+language: en
+
+pipeline:
+  # 1. spaCy Language Model Initializer:
+  # Loads pre-trained linguistic pipeline (en_core_web_md)
+  - name: SpacyNLP
+    model: en_core_web_md
+    case_sensitive: false
+
+  # 2. Tokenizer:
+  # Tokenizes input using spaCy linguistic tokenization
+  - name: SpacyTokenizer
+
+  # 3. Dense & Sparse Featurizers:
+  # Static word vector embeddings from spaCy (300-dimensional GloVe)
+  - name: SpacyFeaturizer
+    pooling: mean
+
+  # Deep contextual transformer embeddings via Hugging Face DistilBERT
+  - name: LanguageModelFeaturizer
+    model_name: distilbert
+    model_weights: distilbert-base-uncased
+
+  # Explicit regex features for strict formatting rules (e.g., 4-digit card numbers)
+  - name: RegexFeaturizer
+
+  # Sliding-window lexical & syntactic token features
+  - name: LexicalSyntacticFeaturizer
+
+  # Sub-word character n-grams to retain typo resilience alongside dense embeddings
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+
+  # 4. Intent Classification & Entity Extraction:
+  # DIET Classifier trained on combined dense (DistilBERT + spaCy) and sparse features
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+    model_confidence: softmax
+
+  # 5. spaCy Named Entity Extractor:
+  # Extracts pre-trained entities (PERSON, DATE, MONEY)
+  - name: SpacyEntityExtractor
+    dimensions: ["PERSON", "DATE", "MONEY"]
+
+  # 6. Entity Mapping:
+  # Canonical synonym resolution
+  - name: EntitySynonymMapper
+
+  # 7. Fallback Classifier:
+  - name: FallbackClassifier
+    threshold: 0.3
+    ambiguity_threshold: 0.1
+
+policies:
+# Core dialogue policies omitted for pure NLU benchmarking

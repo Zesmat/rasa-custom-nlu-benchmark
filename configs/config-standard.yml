@@ -1,0 +1,49 @@
+# ==============================================================================
+# Pipeline 1: Lightweight Standard DIET Baseline
+# Architecture: Bag-of-Words & Subword N-grams + Dense DIET Classifier
+# Best suited for: Resource-constrained, fast training, CPU inference
+# ==============================================================================
+
+recipe: default.v1
+assistant_id: benchmark_baseline_diet
+language: en
+
+pipeline:
+  # 1. Tokenizer: Splits text on whitespace and punctuation tokens
+  - name: WhitespaceTokenizer
+
+  # 2. Sparse Featurizers:
+  # Regex pattern matching (card numbers, transaction IDs, etc.)
+  - name: RegexFeaturizer
+
+  # Sliding-window lexical & syntactic features (casing, prefix, suffix)
+  - name: LexicalSyntacticFeaturizer
+
+  # Word-level bag-of-words featurizer
+  - name: CountVectorsFeaturizer
+
+  # Character n-gram subword featurizer (typo robustness, morphologic variations)
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+
+  # 3. Intent Classification & Entity Extraction:
+  # Dual Intent and Entity Transformer
+  - name: DIETClassifier
+    epochs: 100
+    constrain_similarities: true
+    model_confidence: softmax
+
+  # 4. Entity Mapping:
+  # Normalizes extracted entities based on defined synonyms
+  - name: EntitySynonymMapper
+
+  # 5. Out-of-Scope / Ambiguity Detection:
+  # Fallback for ambiguous or low-confidence intent predictions
+  - name: FallbackClassifier
+    threshold: 0.3
+    ambiguity_threshold: 0.1
+
+policies:
+# Core dialogue policies omitted for pure NLU benchmarking
