@@ -13,7 +13,7 @@ pipeline:
   - name: WhitespaceTokenizer
 
   # 2. Sparse Featurizers:
-  # Regex pattern matching (card numbers, transaction IDs, etc.)
+  # Regex pattern matching (card numbers, transaction dates, amounts)
   - name: RegexFeaturizer
 
   # Sliding-window lexical & syntactic features (casing, prefix, suffix)
